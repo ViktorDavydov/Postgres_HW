@@ -2,11 +2,11 @@
 -- 1. Название компании заказчика (company_name из табл. customers) и ФИО сотрудника, работающего над заказом этой компании (см таблицу employees),
 -- когда и заказчик и сотрудник зарегистрированы в городе London, а доставку заказа ведет компания United Package (company_name в табл shippers)
 SELECT customers.company_name, CONCAT(employees.first_name, ' ', employees.last_name)
-FROM customers
-INNER JOIN orders USING(customer_id)
+FROM orders
+INNER JOIN customers USING(customer_id)
 INNER JOIN employees USING(employee_id)
 INNER JOIN shippers ON orders.ship_via = shippers.shipper_id
-WHERE employees.city = 'London' AND customers.city = 'London' AND shipper_id = 2;
+WHERE employees.city = 'London' AND customers.city = 'London' AND shipper_id = 'United Package';
 
 -- 2. Наименование продукта, количество товара (product_name и units_in_stock в табл products),
 -- имя поставщика и его телефон (contact_name и phone в табл suppliers) для таких продуктов,
